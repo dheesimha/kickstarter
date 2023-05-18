@@ -16,5 +16,8 @@
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^2.0.4"
+  }
 }
