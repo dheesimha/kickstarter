@@ -1,5 +1,5 @@
 <!-- This is the home route of the website  -->
-<script>
+<!-- <script>
   import { onMount } from "svelte";
   import auth from "../authService";
   import { isAuthenticated, user } from "../store";
@@ -20,12 +20,12 @@
   function logout() {
     auth.logout(auth0Client);
   }
-</script>
+</script> -->
 
-<h1 class="text-red-400 text-3xl">Hello</h1>
+<!-- <h1 class="text-red-400 text-3xl">Hello</h1>
 <button id="login" on:click={login}>Login</button>
 <button id="logout" on:click={logout}>Logout</button>
 
 {#if $isAuthenticated}
-  <h1>Hi {$user.name}</h1>
-{/if}
+  <h1>Hi,{$user.name}</h1>
+{/if} -->
