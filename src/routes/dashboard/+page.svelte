@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation";
 </script>
 
-<h1 class="text-white text-center">Dashboard</h1>
+<h1 class="text-white text-center text-2xl">Dashboard</h1>
 <div class="grid-container mt-8 text-white text-center mb-4">
   <div
     class="grid-item bg-kick-gold"

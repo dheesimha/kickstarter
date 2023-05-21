@@ -30,7 +30,7 @@
 </script>
 
 <div>
-  <div class="-mt-8">
+  <div class="-mt-8 font-Nunito">
     <nav
       class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center"
     >
