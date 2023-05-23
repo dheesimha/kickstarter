@@ -1467,9 +1467,15 @@
     max-width: 400px;
     width: 90%;
     padding: 20px;
-    box-shadow: 0px 0px 20px #00000020;
+    /* box-shadow: 0px 0px 20px #00000020; */
     border-radius: 8px;
     background-color: #cbb26a;
+    transition: 2s;
+  }
+
+  .container:hover {
+    box-shadow: 0 0 45px #cbb26a;
+    transition: 800ms;
   }
   .step {
     display: none;
