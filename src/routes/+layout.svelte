@@ -1,6 +1,7 @@
 <script>
   import "../app.css";
-
+  import Body from "./Components/Body.svelte";
+  import Footer from "./Components/Footer.svelte";
   import { onMount } from "svelte";
   import auth from "../authService";
   import { isAuthenticated, user } from "../store";
@@ -96,5 +97,7 @@
       </div>
     </nav>
   </div>
+  <Body/>
+  <Footer/>
 </div>
 <slot />
