@@ -1502,18 +1502,33 @@
     float: right;
     margin-top: 20px;
     padding: 10px 30px;
-    border: none;
     outline: none;
     background-color: #1a1a1a;
     font-size: 18px;
     cursor: pointer;
     border-radius: 20px;
+    transition: 1s;
+    border: 2px solid #1a1a1a;
     /* text-align: right; */
   }
   button.previous-btn {
     float: left;
+    border: 2px solid #1a1a1a;
+    transition: 1s;
   }
   button.submit-btn {
     background-color: #1b9c85;
+    border: 2px solid #1b9c85;
+  }
+
+  button.submit-btn:hover {
+    border: 2px solid white;
+    transition: 1s;
+  }
+
+  button.previous-btn:hover,
+  button.next-btn:hover {
+    border: 2px solid white;
+    transition: 1s;
   }
 </style>
