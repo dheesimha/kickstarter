@@ -13,9 +13,7 @@
 
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
-    console.log($user);
   });
-
   function login() {
     auth.loginWithPopup(auth0Client);
   }

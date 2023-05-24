@@ -2,6 +2,12 @@ import { createAuth0Client } from "@auth0/auth0-spa-js";
 import { user, isAuthenticated, popupOpen } from "./store";
 import config from "../auth_config";
 
+let userLocal;
+
+user.subscribe((value) => {
+    userLocal = value;
+})
+
 async function createClient() {
     let auth0Client = await createAuth0Client({
         domain: config.domain,
@@ -16,9 +22,18 @@ async function loginWithPopup(client, options) {
     try {
         await client.loginWithPopup(options);
 
-        user.set(await client.getUser());
-        isAuthenticated.set(true);
-    } catch (e) {
+        await user.set(await client.getUser());
+        await isAuthenticated.set(true);
+        console.log(userLocal);
+        await fetch("/api/user", {
+            method: "POST",
+            body: JSON.stringify({
+                email: userLocal.email,
+                name: userLocal.name,
+            }),
+        });
+    }
+    catch (e) {
         // eslint-disable-next-line
         console.error(e);
     } finally {
