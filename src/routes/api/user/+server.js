@@ -10,7 +10,7 @@ export const POST = async (event) => {
     if (!user) {
         let createdUser = await User.create({ email: email, name: name })
         if (createdUser) {
-            console.log("Created user: " + createdUser)
+            console.log('User created')
             return new Response(JSON.stringify(createdUser), {
                 status: 201
             })

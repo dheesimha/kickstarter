@@ -37,7 +37,7 @@
           class="text-xl font-bold text-gray-100 md:text-2xl hover:text-blue-400"
           href="/"
         >
-          <img src="Kickstarter_logo.png" width="230" alt="Kickstarter logo" />
+          <img src="/Kickstarter_logo.png" width="230" alt="Kickstarter logo" />
         </a>
         <!-- Mobile menu button -->
         <div on:click={toggleNavbar} class="flex md:hidden">

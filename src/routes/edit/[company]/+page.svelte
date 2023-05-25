@@ -1,6 +1,8 @@
 <script>
+  import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import { user } from "../../store";
+  import { user } from "../../../store";
+  let companyName = $page.params.company;
   let steps,
     nextBtn,
     prevBtn,
@@ -8,9 +10,24 @@
     fundingRounds = 0,
     dateElement,
     inputElement,
-    doc;
+    doc,
+    response,
+    companyNameElement,
+    countryElement,
+    totalFundingAmountElement,
+    companyCategoryElement;
 
-  onMount(() => {
+  onMount(async () => {
+    let result = await fetch(
+      `/api/companies/${companyName}?companyName=${companyName}`,
+      {
+        method: "GET",
+      }
+    );
+
+    response = await result.json();
+    fundingRounds = await response.fundingRounds;
+
     doc = document;
     dateElement = document.getElementById("datepicker");
     steps = Array.from(document.querySelectorAll("form .step"));
@@ -27,6 +44,41 @@
       button.addEventListener("click", () => {
         changeStep("prev");
       });
+
+      if (response) {
+        companyNameElement = document.getElementById("companyName");
+        companyCategoryElement = document.getElementById("companyCategory");
+        totalFundingAmountElement = document.getElementById("fundsRaised");
+        countryElement = document.getElementById("country");
+
+        companyNameElement.value = response.companyName;
+        companyCategoryElement.value = response.companyCategory;
+        totalFundingAmountElement.value = response.totalFundingAmount;
+        countryElement.value = response.country;
+
+        let fundingRoundsInt = parseInt(fundingRounds);
+        let difference = fundingRoundsInt - (dateElement.children.length - 1);
+
+        if (difference > 0 && fundingRoundsInt > 0) {
+          for (let i = 0; i < difference; i++) {
+            inputElement = doc.createElement("input");
+            console.log(inputElement);
+            inputElement.type = "date";
+            inputElement.id =
+              "fundingRound" + dateElement.children.length + "Date";
+            inputElement.name =
+              "fundingRound" + dateElement.children.length + "Date";
+            inputElement.style.display = "block";
+            inputElement.value = response.fundingDates[i];
+            inputElement.classList.add(
+              "mt-2",
+              "bg-kick-gold",
+              "text-kick-black"
+            );
+            dateElement.appendChild(inputElement);
+          }
+        }
+      }
     });
 
     form.addEventListener("submit", async (e) => {
@@ -48,19 +100,16 @@
         return object;
       }, {});
 
-      result.email = $user.email;
+      result.resourceId = response.id;
+      result.userId = response.user;
 
       console.log(result);
 
-      await fetch("/api/companies", {
-        method: "POST",
+      await fetch(`/api/companies/${companyName}`, {
+        method: "PUT",
         body: JSON.stringify(result),
       });
 
-      await form.reset();
-      while (dateElement.children.length !== 1) {
-        dateElement.removeChild(dateElement.lastChild);
-      }
       await changeStep("prev");
     });
   });
@@ -1474,7 +1523,7 @@
         </div>
 
         <button type="button" class="previous-btn">Prev</button>
-        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="submit-btn">Save</button>
       </div>
     </form>
   </div>

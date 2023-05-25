@@ -32,6 +32,7 @@ async function loginWithPopup(client, options) {
                 name: userLocal.name,
             }),
         });
+        await localStorage.setItem("email", userLocal.email);
     }
     catch (e) {
         // eslint-disable-next-line
@@ -41,7 +42,8 @@ async function loginWithPopup(client, options) {
     }
 }
 
-function logout(client) {
+async function logout(client) {
+    await localStorage.clear();
     return client.logout();
 }
 
