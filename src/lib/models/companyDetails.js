@@ -10,7 +10,15 @@ const companySchema = new mongoose.Schema({
     companyCategory: String,
     fundingRounds: String,
     totalFundingAmount: String,
-    fundingDates: [String]
+    fundingDates: [String],
+    advert: String,
+    topCompany: String,
+    secondRound: String,
+    crm: String,
+    workforce: String,
+    firstFundingAge: String,
+    firstMilestoneAge: String,
+    milestoneCount: String,
 })
 
 companySchema.set("toJSON", {

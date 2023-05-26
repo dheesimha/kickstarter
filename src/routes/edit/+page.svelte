@@ -18,7 +18,7 @@
   });
 </script>
 
-<h1 class="text-white text-center text-2xl">Edit</h1>
+<h1 class="text-white text-center text-3xl font-bold">Edit</h1>
 <br />
 <br />
 

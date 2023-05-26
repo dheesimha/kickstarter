@@ -41,9 +41,42 @@
         inputs.push({ name, value });
       });
       form.querySelectorAll("input").forEach((input) => {
-        const { name, value } = input;
-        inputs.push({ name, value });
+        if (input.type !== "radio") {
+          const { name, value } = input;
+          inputs.push({ name, value });
+        }
       });
+
+      //Advert radio group
+      let advertRadioGroup = document.getElementsByName("advert");
+      for (let i = 0; i < advertRadioGroup.length; i++) {
+        if (advertRadioGroup[i].checked) {
+          let groupName = advertRadioGroup[i].name;
+          let value = advertRadioGroup[i].value;
+          inputs.push({ name: groupName, value: value });
+        }
+      }
+
+      //topCompany radio group
+      let topCompanyRadioGroup = document.getElementsByName("topCompany");
+      for (let i = 0; i < topCompanyRadioGroup.length; i++) {
+        if (topCompanyRadioGroup[i].checked) {
+          let groupName = topCompanyRadioGroup[i].name;
+          let value = topCompanyRadioGroup[i].value;
+          inputs.push({ name: groupName, value: value });
+        }
+      }
+
+      //Second round of funding radio group
+      let secondRoundRadioGroup = document.getElementsByName("secondRound");
+      for (let i = 0; i < secondRoundRadioGroup.length; i++) {
+        if (secondRoundRadioGroup[i].checked) {
+          let groupName = secondRoundRadioGroup[i].name;
+          let value = secondRoundRadioGroup[i].value;
+          inputs.push({ name: groupName, value: value });
+        }
+      }
+
       console.log(inputs);
 
       // Push elements of input array into an object
@@ -61,11 +94,10 @@
         body: JSON.stringify(result),
       });
 
-      await form.reset();
+      // await form.reset();
       while (dateElement.children.length !== 1) {
         dateElement.removeChild(dateElement.lastChild);
       }
-      await changeStep("prev");
     });
   });
 
@@ -96,7 +128,13 @@
         inputElement.name =
           "fundingRound" + dateElement.children.length + "Date";
         inputElement.style.display = "block";
-        inputElement.classList.add("mt-2", "bg-kick-gold", "text-kick-black");
+        inputElement.classList.add(
+          "mt-2",
+          "bg-kick-gold",
+          "text-kick-black",
+          "text-lg",
+          "font-medium"
+        );
         dateElement.appendChild(inputElement);
       }
     } else if (difference < 0 && fundingRoundsInt >= 0) {
@@ -112,20 +150,22 @@
   }
 </script>
 
-<h1 class="text-white text-center text-2xl">Analyze</h1>
+<h1 class="text-white text-center text-3xl font-bold">Analyze</h1>
 
 <section>
   <div class="container text-white -mt-24">
     <form>
       <div class="step step-1 active bg-kick-gold">
         <div class="form-group bg-kick-gold">
-          <label for="companyName" class="bg-kick-gold">Company name</label>
+          <label for="companyName" class="bg-kick-gold font-semibold text-xl"
+            >Company name</label
+          >
           <input type="text" id="companyName" name="companyName" />
         </div>
 
         <!-- Countries option list -->
         <div class="form-group bg-kick-gold">
-          <label for="country" class="bg-kick-gold"
+          <label for="country" class="bg-kick-gold text-xl font-semibold"
             >Country Incorporated in
           </label>
           <select class="form-select py-2 w-full" id="country" name="country">
@@ -441,7 +481,9 @@
 
         <!-- Company Category option list  -->
         <div class="form-group bg-kick-gold">
-          <label for="companyCategory" class="bg-kick-gold"
+          <label
+            for="companyCategory"
+            class="bg-kick-gold text-xl font-semibold"
             >Company Category
           </label>
           <select
@@ -1452,7 +1494,7 @@
 
       <div class="step step-2 bg-kick-gold">
         <div class="form-group bg-kick-gold">
-          <label for="fundingRounds" class="bg-kick-gold"
+          <label for="fundingRounds" class="bg-kick-gold text-xl font-semibold"
             >Number of funding rounds completed
           </label>
           <input
@@ -1465,19 +1507,191 @@
         </div>
 
         <div class="form-group bg-kick-gold">
-          <label for="fundsRaised" class="bg-kick-gold"
+          <label for="fundsRaised" class="bg-kick-gold text-xl font-semibold"
             >Total Funding Amount Raised in USD</label
           >
           <input type="text" id="fundsRaised" name="fundsRaised" />
         </div>
 
         <div class="input-group date form-group bg-kick-gold" id="datepicker">
-          <label for="fundsRaised" class="bg-kick-gold"
+          <label for="fundsRaised" class="bg-kick-gold text-xl font-semibold"
             >Enter the dates from the first - latest funding rounds</label
           >
         </div>
 
         <button type="button" class="previous-btn">Prev</button>
+        <button type="button" class="next-btn">Next</button>
+
+        <!-- <button type="submit" class="submit-btn">Submit</button> -->
+      </div>
+      <div class="step step-3 bg-kick-gold">
+        <div class="form-group bg-kick-gold">
+          <label for="advertLabel" class="bg-kick-gold text-xl font-semibold"
+            >Does the company have an advert label?
+          </label>
+          <br />
+          <div class="flex bg-kick-gold">
+            <label
+              for="advertYes"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >Yes</label
+            >
+            <input
+              type="radio"
+              name="advert"
+              id="advertYes"
+              class="inline -ml-36"
+              value="true"
+            />
+          </div>
+          <div class="flex bg-kick-gold">
+            <label
+              for="advertNo"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >No&nbsp;</label
+            >
+            <input
+              type="radio"
+              name="advert"
+              id="advertNo"
+              class="inline -ml-36"
+              value="false"
+            />
+          </div>
+        </div>
+
+        <div class="form-group bg-kick-gold">
+          <label
+            for="firstFundingAge"
+            class="bg-kick-gold text-xl font-semibold"
+            >Age of the company when it received it's first funding</label
+          >
+          <input type="text" id="firstFundingAge" name="firstFundingAge" />
+        </div>
+
+        <div class="form-group bg-kick-gold">
+          <label for="crm" class="bg-kick-gold text-xl font-semibold"
+            >On a scale of 1-100 , enter the company's relationship with it's
+            clients</label
+          >
+          <input type="text" id="crm" name="crm" />
+        </div>
+
+        <button type="button" class="previous-btn">Prev</button>
+        <button type="button" class="next-btn">Next</button>
+
+        <!-- <button type="submit" class="submit-btn">Submit</button> -->
+      </div>
+
+      <div class="step step-4 bg-kick-gold">
+        <div class="form-group bg-kick-gold">
+          <label
+            for="firstMilestoneAge"
+            class="bg-kick-gold text-xl font-semibold"
+            >Age of the company when it reached it's first milestone</label
+          >
+          <input type="text" id="firstMilestoneAge" name="firstMilestoneAge" />
+        </div>
+
+        <div class="form-group bg-kick-gold">
+          <label for="milestoneCount" class="bg-kick-gold text-xl font-semibold"
+            >Number of significant milestones recorded by the company</label
+          >
+          <input type="text" id="milestoneCount" name="milestoneCount" />
+        </div>
+
+        <div class="form-group bg-kick-gold">
+          <label for="workforce" class="bg-kick-gold text-xl font-semibold"
+            >Number of employees in the company</label
+          >
+          <input type="text" id="workforce" name="workforce" />
+        </div>
+
+        <button type="button" class="previous-btn">Prev</button>
+        <button type="button" class="next-btn">Next</button>
+
+        <!-- <button type="submit" class="submit-btn">Submit</button> -->
+      </div>
+
+      <div class="step step-5 bg-kick-gold">
+        <div class="form-group bg-kick-gold">
+          <label
+            for="topCompanyLabel"
+            class="bg-kick-gold text-xl font-semibold"
+            >Is the company presently listed amongst top 500 companies across
+            the world/country?
+          </label>
+          <br />
+          <div class="flex bg-kick-gold">
+            <label
+              for="topCompanyYes"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >Yes</label
+            >
+            <input
+              type="radio"
+              name="topCompany"
+              id="topCompanyYes"
+              class="inline -ml-36"
+              value="true"
+            />
+          </div>
+          <div class="flex bg-kick-gold">
+            <label
+              for="topCompanyNo"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >No&nbsp;</label
+            >
+            <input
+              type="radio"
+              name="topCompany"
+              id="topCompanyNo"
+              class="inline -ml-36"
+              value="false"
+            />
+          </div>
+        </div>
+
+        <div class="form-group bg-kick-gold">
+          <label
+            for="secondRoundLabel"
+            class="bg-kick-gold text-xl font-semibold"
+            >Has the company received second round of funding?
+          </label>
+          <br />
+          <div class="flex bg-kick-gold">
+            <label
+              for="secondRoundYes"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >Yes</label
+            >
+            <input
+              type="radio"
+              name="secondRound"
+              id="secondRoundYes"
+              class="inline -ml-36"
+              value="true"
+            />
+          </div>
+          <div class="flex bg-kick-gold">
+            <label
+              for="seondRoundNo"
+              class="inline bg-kick-gold text-kick-black font-semibold"
+              >No&nbsp;</label
+            >
+            <input
+              type="radio"
+              name="secondRound"
+              id="secondRoundNo"
+              class="inline -ml-36"
+              value="false"
+            />
+          </div>
+        </div>
+
+        <button type="button" class="previous-btn">Prev</button>
+        <!-- <button type="button" class="next-btn">Next</button> -->
+
         <button type="submit" class="submit-btn">Submit</button>
       </div>
     </form>

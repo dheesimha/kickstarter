@@ -1,5 +1,8 @@
 <script>
   import { onMount } from "svelte";
+  import auth from "../authService";
+  import { user, auth0Client } from "../store";
+  import { goto } from "$app/navigation";
 
   onMount(async () => {
     try {
@@ -13,6 +16,13 @@
       console.error(error);
     }
   });
+
+  async function login() {
+    await auth.loginWithPopup($auth0Client);
+    if ($user) {
+      await goto("/dashboard");
+    }
+  }
 </script>
 
 <div class="flex mx-6 content-center justify-center">
@@ -27,7 +37,7 @@
     <br />
     <button
       class="bg-kick-gold text-white mt-4 absolute top-[50%] left-[20%] w-80 h-14 rounded-2xl text-xl hero-btn"
-      >Get Started</button
+      on:click={login}>Get Started</button
     >
   </div>
 </div>

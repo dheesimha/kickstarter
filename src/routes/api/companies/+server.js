@@ -24,7 +24,17 @@ export const POST = async (event) => {
         country: result.country,
         fundingRounds: result.fundingRounds,
         totalFundingAmount: result.fundsRaised,
-        fundingDates: datesArray
+        fundingDates: datesArray,
+        advert: result.advert,
+        topCompany: result.topCompany,
+        secondRound: result.secondRound,
+        crm: result.crm,
+        workforce: result.workforce,
+        firstFundingAge: result.firstFundingAge,
+        firstMilestoneAge: result.firstMilestoneAge,
+        milestoneCount: result.milestoneCount
+
+
     }
 
     let createdCompany = await Company.create(item)

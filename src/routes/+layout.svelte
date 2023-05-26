@@ -3,27 +3,27 @@
 
   import { onMount } from "svelte";
   import auth from "../authService";
-  import { isAuthenticated, user } from "../store";
+  import { isAuthenticated, user, auth0Client } from "../store";
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
 
   let showMenu = false;
-  let auth0Client;
 
   onMount(async () => {
-    auth0Client = await auth.createClient();
+    $auth0Client = await auth.createClient();
 
-    isAuthenticated.set(await auth0Client.isAuthenticated());
-    user.set(await auth0Client.getUser());
+    isAuthenticated.set(await $auth0Client.isAuthenticated());
+    user.set(await $auth0Client.getUser());
   });
   async function login() {
-    await auth.loginWithPopup(auth0Client);
+    await auth.loginWithPopup($auth0Client);
     if ($user) {
       await goto("/dashboard");
     }
   }
 
   async function logout() {
-    await auth.logout(auth0Client);
+    await auth.logout($auth0Client);
     await goto("/");
   }
 
@@ -89,7 +89,11 @@
           </button>
         {:else}
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+              'dashboard'
+            )
+              ? 'text-[#fff3d3]'
+              : 'text-kick-gold'}"
             on:click={() => {
               goto("/dashboard");
             }}
@@ -97,7 +101,11 @@
             Dashboard
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+              'analyze'
+            )
+              ? 'text-[#fff3d3]'
+              : 'text-kick-gold'}"
             on:click={() => {
               goto("/analyze");
             }}
@@ -105,7 +113,11 @@
             Analyze
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+              'edit'
+            )
+              ? 'text-[#fff3d3]'
+              : 'text-kick-gold'}"
             on:click={() => {
               goto("/edit");
             }}
@@ -113,7 +125,11 @@
             Edit
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+              'reports'
+            )
+              ? 'text-[#fff3d3]'
+              : 'text-kick-gold'}"
             on:click={() => {
               goto("/reports");
             }}
