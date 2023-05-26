@@ -1,5 +1,12 @@
 <script>
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
+
+  onMount(async () => {
+    if (!localStorage.getItem("email")) {
+      await goto("/");
+    }
+  });
 </script>
 
 <h1 class="text-white text-center text-2xl">Dashboard</h1>

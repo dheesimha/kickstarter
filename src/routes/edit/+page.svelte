@@ -3,6 +3,9 @@
   import Tile from "../../lib/Tile.svelte";
   let companies = [];
   onMount(async () => {
+    if (!localStorage.getItem("email")) {
+      await goto("/");
+    }
     let email = localStorage.getItem("email");
     if (email) {
       let response = await fetch(`/api/companies?email=${email}`, {

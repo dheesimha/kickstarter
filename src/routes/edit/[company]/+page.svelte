@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import { user } from "../../../store";
+  import { goto } from "$app/navigation";
   let companyName = $page.params.company;
   let steps,
     nextBtn,
@@ -18,6 +18,9 @@
     companyCategoryElement;
 
   onMount(async () => {
+    if (!localStorage.getItem("email")) {
+      await goto("/");
+    }
     let result = await fetch(
       `/api/companies/${companyName}?companyName=${companyName}`,
       {

@@ -4,6 +4,7 @@
   import { onMount } from "svelte";
   import auth from "../authService";
   import { isAuthenticated, user } from "../store";
+  import { goto } from "$app/navigation";
 
   let showMenu = false;
   let auth0Client;
@@ -14,12 +15,16 @@
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
   });
-  function login() {
-    auth.loginWithPopup(auth0Client);
+  async function login() {
+    await auth.loginWithPopup(auth0Client);
+    if ($user) {
+      await goto("/dashboard");
+    }
   }
 
-  function logout() {
-    auth.logout(auth0Client);
+  async function logout() {
+    await auth.logout(auth0Client);
+    await goto("/");
   }
 
   function toggleNavbar() {
@@ -77,15 +82,47 @@
         <a class="text-gray-100 hover:text-kick-gold" href="/about">About Us</a> -->
         {#if !$isAuthenticated}
           <button
-            class="py-1.5 rounded-lg px-4 text-center border text-black hover:text-white block lg:inline lg:border-0 bg-kick-gold"
+            class="py-1.5 rounded-xl px-4 text-center border text-white login-btn hover:text-white block lg:inline lg:border-0 bg-kick-gold"
             on:click={login}
           >
             Login
           </button>
         {:else}
+          <h2
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            on:click={() => {
+              goto("/dashboard");
+            }}
+          >
+            Dashboard
+          </h2>
+          <h2
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            on:click={() => {
+              goto("/analyze");
+            }}
+          >
+            Analyze
+          </h2>
+          <h2
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            on:click={() => {
+              goto("/edit");
+            }}
+          >
+            Edit
+          </h2>
+          <h2
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms]"
+            on:click={() => {
+              goto("/reports");
+            }}
+          >
+            Reports
+          </h2>
           <h2 class="text-white">Hi, {$user.given_name}</h2>
           <button
-            class="py-1.5 rounded-lg px-4 text-center border text-black hover:text-white block lg:inline lg:border-0 bg-kick-gold"
+            class="py-1.5 rounded-xl px-4 text-center border text-white hover:text-white block lg:inline lg:border-0 bg-kick-gold logout-btn"
             on:click={logout}
           >
             Logout
@@ -96,3 +133,17 @@
   </div>
 </div>
 <slot />
+
+<style>
+  .login-btn,
+  .logout-btn {
+    transition: 800ms;
+  }
+
+  .login-btn:hover,
+  .logout-btn:hover {
+    background-color: #fff3d3;
+    transition: 800ms;
+    color: #1a1a1a;
+  }
+</style>

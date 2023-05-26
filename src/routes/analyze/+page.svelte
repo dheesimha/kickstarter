@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
   import { user } from "../../store";
   let steps,
     nextBtn,
@@ -10,7 +11,10 @@
     inputElement,
     doc;
 
-  onMount(() => {
+  onMount(async () => {
+    if (!localStorage.getItem("email")) {
+      await goto("/");
+    }
     doc = document;
     dateElement = document.getElementById("datepicker");
     steps = Array.from(document.querySelectorAll("form .step"));
