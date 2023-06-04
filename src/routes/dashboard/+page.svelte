@@ -9,35 +9,36 @@
   });
 </script>
 
-<h1 class="text-white text-center text-3xl font-bold">Dashboard</h1>
-<div class="grid-container mt-8 text-white text-center mb-4">
-  <div
-    class="grid-item"
-    on:click={() => {
-      goto("/analyze");
-    }}
-  >
-    <h3 class=" mt-4 text-xl text-kick-gold font-semibold">
-      Analyze a new company
-    </h3>
-    <p class=" mt-6 text-white font-semibold">
-      Run the company metrics through the algorithm
-    </p>
-  </div>
-  <div
-    class="grid-item"
-    on:click={() => {
-      goto("/edit");
-    }}
-  >
-    <h3 class=" mt-4 text-xl text-kick-gold font-semibold">
-      Edit previous company details
-    </h3>
-    <p class=" mt-6 text-white font-semibold">
-      Edit the metrics of a previously analyzed company
-    </p>
-  </div>
-  <!-- <div
+<div class="bg-kick-black h-screen">
+  <h1 class="text-white text-center text-3xl font-bold">Dashboard</h1>
+  <div class="grid-container mt-8 text-white text-center mb-4">
+    <div
+      class="grid-item"
+      on:click={() => {
+        goto("/analyze");
+      }}
+    >
+      <h3 class=" mt-4 text-xl text-kick-gold font-semibold">
+        Analyze a new company
+      </h3>
+      <p class=" mt-6 text-white font-semibold">
+        Run the company metrics through the algorithm
+      </p>
+    </div>
+    <div
+      class="grid-item"
+      on:click={() => {
+        goto("/edit");
+      }}
+    >
+      <h3 class=" mt-4 text-xl text-kick-gold font-semibold">
+        Edit previous company details
+      </h3>
+      <p class=" mt-6 text-white font-semibold">
+        Edit the metrics of a previously analyzed company
+      </p>
+    </div>
+    <!-- <div
     class="grid-item-full"
     on:click={() => {
       goto("/reports");
@@ -51,6 +52,7 @@
       the algorithm.
     </p>
   </div> -->
+  </div>
 </div>
 
 <style>

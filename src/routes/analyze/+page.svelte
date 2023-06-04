@@ -1391,6 +1391,7 @@
               name="fundingRounds"
               bind:value={fundingRounds}
               on:change={createDateDivs}
+              class="bg-kick-black"
             />
           </div>
 
@@ -1398,7 +1399,12 @@
             <label for="fundsRaised" class="bg-kick-gold text-xl font-semibold"
               >Total Funding Amount Raised in USD</label
             >
-            <input type="text" id="fundsRaised" name="fundsRaised" />
+            <input
+              type="text"
+              id="fundsRaised"
+              name="fundsRaised"
+              class="bg-kick-black"
+            />
           </div>
 
           <div class="input-group date form-group bg-kick-gold" id="datepicker">

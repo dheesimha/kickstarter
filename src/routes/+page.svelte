@@ -36,7 +36,7 @@
     </h1>
     <br />
     <button
-      class="bg-kick-gold text-white mt-4 absolute top-[50%] left-[20%] w-80 h-14 rounded-2xl text-xl hero-btn"
+      class="bg-kick-gold text-white mt-4 absolute top-[20%] left-[20%] w-80 h-14 rounded-2xl text-xl hero-btn"
       on:click={login}>Get Started</button
     >
   </div>
