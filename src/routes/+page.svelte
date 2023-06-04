@@ -25,7 +25,7 @@
   }
 </script>
 
-<div class="flex mx-6 content-center justify-center">
+<div class="flex content-center justify-center h-screen bg-kick-black">
   <div class="heroImg ml-4">
     <img src="/hero.png" alt="Hero Image" width="400px" height="350px" />
   </div>

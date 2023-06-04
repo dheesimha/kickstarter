@@ -18,16 +18,18 @@
   });
 </script>
 
-<h1 class="text-white text-center text-3xl font-bold">Edit</h1>
-<br />
-<br />
+<div class="bg-kick-black h-screen">
+  <h1 class="text-white text-center text-3xl font-bold">Edit</h1>
+  <br />
+  <br />
 
-{#if companies.length > 0}
-  {#each companies as company}
-    <Tile {company} />
-    <br />
-    <br />
-  {/each}
-{:else}
-  <h2 class="text-white text-center text-xl">No companies analyzed.</h2>
-{/if}
+  {#if companies.length > 0}
+    {#each companies as company}
+      <Tile {company} />
+      <br />
+      <br />
+    {/each}
+  {:else}
+    <h2 class="text-white text-center text-xl">No companies analyzed.</h2>
+  {/if}
+</div>

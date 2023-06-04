@@ -8,7 +8,7 @@ export const GET = async () => {
         if (mongoose.connection.readyState !== 1) {
 
             await mongoose.connect(import.meta.env.VITE_USER_DB_URI)
-            return new Response("Connected to the DB")
+            return new Response("Started a new connection with DB")
         }
         else {
             return new Response("Already connected to the DB")

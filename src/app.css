@@ -4,6 +4,6 @@
 @tailwind utilities;
 
 * {
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   font-family: "Nunito", sans-serif;
 }
