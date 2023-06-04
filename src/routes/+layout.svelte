@@ -124,7 +124,7 @@
           >
             Edit
           </h2>
-          <h2
+          <!-- <h2
             class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
               'reports'
             )
@@ -135,7 +135,7 @@
             }}
           >
             Reports
-          </h2>
+          </h2> -->
           <h2 class="text-white">Hi, {$user.given_name}</h2>
           <button
             class="py-1.5 rounded-xl px-4 text-center border text-white hover:text-white block lg:inline lg:border-0 bg-kick-gold logout-btn"

@@ -94,7 +94,24 @@
         body: JSON.stringify(result),
       });
 
-      // await form.reset();
+      await fetch(`/api/reports?companyName=${result.companyName}`, {
+        method: "POST",
+        body: JSON.stringify({
+          advert: result.advert,
+          age_fund: parseInt(result.firstFundingAge),
+          age_mile: parseInt(result.firstMilestoneAge),
+          relation_score: parseInt(result.crm),
+          signi_event: parseInt(result.milestoneCount),
+          second_round: result.secondRound,
+          num_employ: parseInt(result.workforce),
+          top500: result.topCompany,
+        }),
+      });
+
+      await form.reset();
+
+      await goto(`/reports/${result.companyName}`)
+
       while (dateElement.children.length !== 1) {
         dateElement.removeChild(dateElement.lastChild);
       }
@@ -1541,7 +1558,7 @@
               name="advert"
               id="advertYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1555,7 +1572,7 @@
               name="advert"
               id="advertNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>
@@ -1633,7 +1650,7 @@
               name="topCompany"
               id="topCompanyYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1647,7 +1664,7 @@
               name="topCompany"
               id="topCompanyNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>
@@ -1670,7 +1687,7 @@
               name="secondRound"
               id="secondRoundYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1684,7 +1701,7 @@
               name="secondRound"
               id="secondRoundNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>

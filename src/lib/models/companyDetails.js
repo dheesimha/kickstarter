@@ -19,6 +19,7 @@ const companySchema = new mongoose.Schema({
     firstFundingAge: String,
     firstMilestoneAge: String,
     milestoneCount: String,
+    success: Number
 })
 
 companySchema.set("toJSON", {

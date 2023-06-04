@@ -80,13 +80,13 @@
         milestoneCountElement.value = response.milestoneCount;
         workforceElement.value = response.workforce;
 
-        response.secondRound === "true"
+        response.secondRound === "Yes"
           ? (secondRoundRadioGroup[0].checked = true)
           : (secondRoundRadioGroup[1].checked = true);
-        response.topCompany === "true"
+        response.topCompany === "Yes"
           ? (topCompanyRadioGroup[0].checked = true)
           : (topCompanyRadioGroup[1].checked = true);
-        response.advert === "true"
+        response.advert === "Yes"
           ? (advertRadioGroup[0].checked = true)
           : (advertRadioGroup[1].checked = true);
 
@@ -175,7 +175,7 @@
       });
 
       // await changeStep("prev");
-      alert("Successfully edited the details of "+companyName)
+      alert("Successfully edited the details of " + companyName);
     });
   });
 
@@ -1609,7 +1609,7 @@
               name="advert"
               id="advertYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1623,7 +1623,7 @@
               name="advert"
               id="advertNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>
@@ -1701,7 +1701,7 @@
               name="topCompany"
               id="topCompanyYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1715,7 +1715,7 @@
               name="topCompany"
               id="topCompanyNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>
@@ -1738,7 +1738,7 @@
               name="secondRound"
               id="secondRoundYes"
               class="inline -ml-36"
-              value="true"
+              value="Yes"
             />
           </div>
           <div class="flex bg-kick-gold">
@@ -1752,7 +1752,7 @@
               name="secondRound"
               id="secondRoundNo"
               class="inline -ml-36"
-              value="false"
+              value="No"
             />
           </div>
         </div>
