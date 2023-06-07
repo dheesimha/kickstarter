@@ -1,9 +1,11 @@
 import Company from "../../../../lib/models/companyDetails"
+import User from "$lib/models/user"
 
 export const GET = async (event) => {
-
     let companyName = event.url.searchParams.get('companyName')
-    let companyDetails = await Company.findOne({ companyName })
+    let email = event.url.searchParams.get('email')
+    let person = await User.findOne({ email }).exec()
+    let companyDetails = await Company.findOne({ companyName, user: person._id })
 
     if (companyDetails) {
         console.log('Returned company detatils of' + companyName)

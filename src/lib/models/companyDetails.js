@@ -7,7 +7,7 @@ const companySchema = new mongoose.Schema({
     },
     companyName: String,
     country: String,
-    companyCategory: String,
+    companyCategory: [String],
     fundingRounds: String,
     totalFundingAmount: String,
     fundingDates: [String],
@@ -19,7 +19,11 @@ const companySchema = new mongoose.Schema({
     firstFundingAge: String,
     firstMilestoneAge: String,
     milestoneCount: String,
-    success: Number
+    success: Number,
+    funding_total_average: Number,
+    country_funding_duration_avg: Number,
+    funding_rounds_avg: Number,
+    funding_duration_avg: Number
 })
 
 companySchema.set("toJSON", {

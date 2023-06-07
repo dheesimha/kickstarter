@@ -6,6 +6,7 @@ export const POST = async (event) => {
 
     const pattern = /Date/
     let datesArray = [];
+    let averageDuration;
 
     Object.keys(result).forEach(key => {
         if (pattern.test(key)) {
@@ -17,6 +18,23 @@ export const POST = async (event) => {
 
     let userDetails = await User.findOne({ email }).exec()
 
+    const durations = [];
+    if (datesArray.length > 1) {
+        for (let i = 0; i < datesArray.length - 1; i++) {
+            const currentDate = new Date(datesArray[i]);
+            const nextDate = new Date(datesArray[i + 1]);
+            const duration = (nextDate - currentDate) / (1000 * 60 * 60 * 24); // Difference in days
+            durations.push(duration);
+        }
+
+        // Calculate the average funding duration
+        averageDuration = durations.reduce((acc, curr) => acc + curr, 0) / durations.length;
+    }
+    else {
+        averageDuration = 0;
+    }
+    console.log(averageDuration);
+
     let item = {
         user: userDetails._id,
         companyName: result.companyName,
@@ -24,7 +42,7 @@ export const POST = async (event) => {
         country: result.country,
         fundingRounds: result.fundingRounds,
         totalFundingAmount: result.fundsRaised,
-        fundingDates: datesArray,
+        datesArray: datesArray,
         advert: result.advert,
         topCompany: result.topCompany,
         secondRound: result.secondRound,
@@ -32,9 +50,8 @@ export const POST = async (event) => {
         workforce: result.workforce,
         firstFundingAge: result.firstFundingAge,
         firstMilestoneAge: result.firstMilestoneAge,
-        milestoneCount: result.milestoneCount
-
-
+        milestoneCount: result.milestoneCount,
+        funding_duration_avg: averageDuration
     }
 
     let createdCompany = await Company.create(item)

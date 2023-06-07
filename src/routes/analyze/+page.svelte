@@ -681,8 +681,6 @@
     "Service Industries",
     "Service Providers",
     "Services",
-    "Sex Industry",
-    "SexTech",
     "Shared Services",
     "Shipping",
     "Shipping Broker Industry",
@@ -851,10 +849,9 @@
     "Wireless",
     "Women",
     "Writers",
-    "Young Adults",
   ];
-  let selected = [];
 
+  let selected = [];
   onMount(async () => {
     if (!localStorage.getItem("email")) {
       await goto("/");
@@ -928,10 +925,23 @@
         object[item.name] = item.value;
         return object;
       }, {});
-
+      result.companyCategory = selected;
       result.email = $user.email;
-
       console.log(result);
+      let lastFundingDate;
+      let firstFundingDate;
+
+      if (fundingRounds >= 1) {
+        firstFundingDate = result.fundingRound1Date;
+      } else {
+        firstFundingDate = "1861-01-01";
+      }
+
+      if (fundingRounds > 1) {
+        lastFundingDate = dateElement.lastChild.value;
+      } else {
+        lastFundingDate = "1861-01-01";
+      }
 
       await fetch("/api/companies", {
         method: "POST",
@@ -941,14 +951,12 @@
       await fetch(`/api/reports?companyName=${result.companyName}`, {
         method: "POST",
         body: JSON.stringify({
-          advert: result.advert,
-          age_fund: parseInt(result.firstFundingAge),
-          age_mile: parseInt(result.firstMilestoneAge),
-          relation_score: parseInt(result.crm),
-          signi_event: parseInt(result.milestoneCount),
-          second_round: result.secondRound,
-          num_employ: parseInt(result.workforce),
-          top500: result.topCompany,
+          category: result.companyCategory,
+          total_funding: parseFloat(result.fundsRaised),
+          country_code: result.country,
+          total_funding_rounds: parseInt(result.fundingRounds),
+          first_funding_date: firstFundingDate,
+          last_funding_date: lastFundingDate,
         }),
       });
 
@@ -1011,7 +1019,7 @@
   }
 </script>
 
-<div class="bg-kick-black">
+<div class="bg-kick-black h-screen !overflow-hidden">
   <h1 class="text-white text-center text-3xl font-bold">Analyze</h1>
 
   <section>
@@ -1460,7 +1468,12 @@
               class="bg-kick-gold text-xl font-semibold"
               >Age of the company when it received it's first funding</label
             >
-            <input type="text" id="firstFundingAge" name="firstFundingAge" />
+            <input
+              type="text"
+              id="firstFundingAge"
+              name="firstFundingAge"
+              class="bg-kick-black"
+            />
           </div>
 
           <div class="form-group bg-kick-gold">
@@ -1468,7 +1481,7 @@
               >On a scale of 1-100 , enter the company's relationship with it's
               clients</label
             >
-            <input type="text" id="crm" name="crm" />
+            <input type="text" id="crm" name="crm" class="bg-kick-black" />
           </div>
 
           <button type="button" class="previous-btn">Prev</button>
@@ -1488,6 +1501,7 @@
               type="text"
               id="firstMilestoneAge"
               name="firstMilestoneAge"
+              class="bg-kick-black"
             />
           </div>
 
@@ -1497,14 +1511,24 @@
               class="bg-kick-gold text-xl font-semibold"
               >Number of significant milestones recorded by the company</label
             >
-            <input type="text" id="milestoneCount" name="milestoneCount" />
+            <input
+              type="text"
+              id="milestoneCount"
+              name="milestoneCount"
+              class="bg-kick-black"
+            />
           </div>
 
           <div class="form-group bg-kick-gold">
             <label for="workforce" class="bg-kick-gold text-xl font-semibold"
               >Number of employees in the company</label
             >
-            <input type="text" id="workforce" name="workforce" />
+            <input
+              type="text"
+              id="workforce"
+              name="workforce"
+              class="bg-kick-black"
+            />
           </div>
 
           <button type="button" class="previous-btn">Prev</button>

@@ -2,7 +2,9 @@
   import { onMount } from "svelte";
   import Tile from "../../lib/Tile.svelte";
   let companies = [];
+  let win;
   onMount(async () => {
+    win = window;
     if (!localStorage.getItem("email")) {
       await goto("/");
     }
@@ -18,18 +20,20 @@
   });
 </script>
 
-<div class="bg-kick-black h-screen">
-  <h1 class="text-white text-center text-3xl font-bold">Edit</h1>
-  <br />
-  <br />
+{#if win != undefined}
+  <div class="bg-kick-black min-h-screen h-fit">
+    <h1 class="text-white text-center text-3xl font-bold">Edit</h1>
+    <br />
+    <br />
 
-  {#if companies.length > 0}
-    {#each companies as company}
-      <Tile {company} />
-      <br />
-      <br />
-    {/each}
-  {:else}
-    <h2 class="text-white text-center text-xl">No companies analyzed.</h2>
-  {/if}
-</div>
+    {#if companies.length > 0}
+      {#each companies as company}
+        <Tile {company} />
+        <br />
+        <br />
+      {/each}
+    {:else}
+      <h2 class="text-white text-center text-xl">No companies analyzed.</h2>
+    {/if}
+  </div>
+{/if}

@@ -30,7 +30,7 @@
       await goto("/");
     }
     let result = await fetch(
-      `/api/companies/${companyName}?companyName=${companyName}`,
+      `/api/companies/${companyName}?companyName=${companyName}&email=${email}`,
       {
         method: "GET",
       }
