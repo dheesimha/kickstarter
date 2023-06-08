@@ -23,7 +23,11 @@ const companySchema = new mongoose.Schema({
     funding_total_average: Number,
     country_funding_duration_avg: Number,
     funding_rounds_avg: Number,
-    funding_duration_avg: Number
+    funding_duration_avg: Number,
+    reportGenerated: {
+        type: Boolean,
+        default: false
+    }
 })
 
 companySchema.set("toJSON", {

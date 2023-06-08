@@ -14,25 +14,23 @@ export const POST = async (event) => {
         }
     })
 
+    console.log(datesArray)
+
     let email = await result.email;
 
     let userDetails = await User.findOne({ email }).exec()
 
-    const durations = [];
     if (datesArray.length > 1) {
-        for (let i = 0; i < datesArray.length - 1; i++) {
-            const currentDate = new Date(datesArray[i]);
-            const nextDate = new Date(datesArray[i + 1]);
-            const duration = (nextDate - currentDate) / (1000 * 60 * 60 * 24); // Difference in days
-            durations.push(duration);
-        }
+        const firstDate = new Date(datesArray[0])
+        const lastDate = new Date(datesArray[datesArray.length - 1])
 
-        // Calculate the average funding duration
-        averageDuration = durations.reduce((acc, curr) => acc + curr, 0) / durations.length;
+        averageDuration = (lastDate - firstDate) / (1000 * 60 * 60 * 24); // Difference in days
     }
+
     else {
         averageDuration = 0;
     }
+
     console.log(averageDuration);
 
     let item = {
@@ -42,7 +40,7 @@ export const POST = async (event) => {
         country: result.country,
         fundingRounds: result.fundingRounds,
         totalFundingAmount: result.fundsRaised,
-        datesArray: datesArray,
+        fundingDates: datesArray,
         advert: result.advert,
         topCompany: result.topCompany,
         secondRound: result.secondRound,

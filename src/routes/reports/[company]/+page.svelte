@@ -1,15 +1,16 @@
 <script>
   import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import { goto } from "$app/navigation";
   import FundingParamsChart from "../../../lib/FundingParamsChart.svelte";
+  import Doughnut from "../../../lib/Doughnut.svelte";
   let companyName = $page.params.company;
   let response,
     totalFundingChartData,
     totalFundingRoundsData,
     fundingDurationAvgData,
     investorData,
-    ratingData;
+    ratingData,
+    finModelData;
 
   onMount(async () => {
     let email = localStorage.getItem("email");
@@ -125,6 +126,41 @@
       ],
     };
 
+    finModelData = {
+      labels: [
+        "Categories of the company",
+        "Total Funding in USD",
+        "Country of origin",
+        "Total rounds of funding",
+        "Time period b/w first and last funding rounds",
+        "First funding round date",
+        "Last funding round date",
+      ],
+      datasets: [
+        {
+          data: [16.32, 22.34, 4.67, 1.93, 9.69, 24.51, 20.54],
+          backgroundColor: [
+            "#F7464A",
+            "#46BFBD",
+            "#FDB45C",
+            "#61bdf2",
+            "#4D5360",
+            "#9b72f2",
+            "#d4f55b",
+          ],
+          hoverBackgroundColor: [
+            "#FF5A5E",
+            "#5AD3D1",
+            "#FFC870",
+            "#4db9f7",
+            "#616774",
+            "#8f61f2",
+            "#c2f213",
+          ],
+        },
+      ],
+    };
+
     console.log(response);
   });
 </script>
@@ -216,6 +252,17 @@
           <br />
           <div class="h-[450px] bg-white rounded-xl">
             <FundingParamsChart data={ratingData} />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl text-white text-center font-semibold">
+            6. Impact and weightage of the metrics in the final result generated
+            by the model
+          </h3>
+          <br />
+          <div class="h-[450px] bg-white rounded-xl">
+            <Doughnut data={finModelData} />
           </div>
         </div>
       </div>

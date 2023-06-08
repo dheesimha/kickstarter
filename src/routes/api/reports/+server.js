@@ -1,9 +1,13 @@
 import Company from "../../../lib/models/companyDetails"
+import User from "$lib/models/user"
+
 import * as countries from "i18n-iso-countries"
 
 export const POST = async (event) => {
     let body = await event.request.json()
     let companyName = await event.url.searchParams.get('companyName')
+    let email = await event.url.searchParams.get('email')
+    let person = await User.findOne({ email: email })
     let finalResponse
 
     body.category = body.category.join('|')
@@ -43,21 +47,23 @@ export const POST = async (event) => {
         console.log(res2)
 
         if (result.success == 1) {
-            finalResponse = await Company.findOneAndUpdate({ companyName: companyName },
+            finalResponse = await Company.findOneAndUpdate({ companyName: companyName, user: person._id },
                 {
                     success: 1,
                     funding_total_average: res2.funding_total_average,
                     country_funding_duration_avg: res2.funding_duration_avg,
-                    funding_rounds_avg: res2.funding_rounds_avg
+                    funding_rounds_avg: res2.funding_rounds_avg,
+                    reportGenerated: true
                 })
             console.log('Entered success')
         }
         else {
-            finalResponse = await Company.findOneAndUpdate({ companyName: companyName }, {
+            finalResponse = await Company.findOneAndUpdate({ companyName: companyName, user: person._id }, {
                 success: 0,
                 funding_total_average: res2.funding_total_average,
                 country_funding_duration_avg: res2.funding_duration_avg,
-                funding_rounds_avg: res2.funding_rounds_avg
+                funding_rounds_avg: res2.funding_rounds_avg,
+                reportGenerated: true
             })
             console.log('Entered failure')
 
@@ -74,3 +80,30 @@ export const POST = async (event) => {
     }
 
 }
+
+
+
+export const GET = async (event) => {
+    let email = await event.url.searchParams.get('email')
+    let person = await User.findOne({ email: email })
+    let companies = await Company.find({ user: person._id, reportGenerated: true }).exec();
+
+    if (companies.length > 0) {
+        console.log('Companies found')
+        return new Response(JSON.stringify(companies), {
+            status: 200,
+        })
+    }
+
+    else {
+        return new Response(JSON.stringify({
+            message: 'You have not analyzed any company'
+        }), {
+            status: 202
+        })
+    }
+
+}
+
+
+

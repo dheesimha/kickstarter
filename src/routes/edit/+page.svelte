@@ -15,6 +15,7 @@
       });
 
       companies = await response.json();
+      companies = companies.reverse();
       console.log(companies);
     }
   });

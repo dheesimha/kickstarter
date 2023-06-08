@@ -918,10 +918,9 @@
         }
       }
 
-      console.log(inputs);
-
       // Push elements of input array into an object
       let result = inputs.reduce((object, item) => {
+        console.log(object);
         object[item.name] = item.value;
         return object;
       }, {});
@@ -948,17 +947,20 @@
         body: JSON.stringify(result),
       });
 
-      await fetch(`/api/reports?companyName=${result.companyName}`, {
-        method: "POST",
-        body: JSON.stringify({
-          category: result.companyCategory,
-          total_funding: parseFloat(result.fundsRaised),
-          country_code: result.country,
-          total_funding_rounds: parseInt(result.fundingRounds),
-          first_funding_date: firstFundingDate,
-          last_funding_date: lastFundingDate,
-        }),
-      });
+      await fetch(
+        `/api/reports?companyName=${result.companyName}&email=${result.email}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            category: result.companyCategory,
+            total_funding: parseFloat(result.fundsRaised),
+            country_code: result.country,
+            total_funding_rounds: parseInt(result.fundingRounds),
+            first_funding_date: firstFundingDate,
+            last_funding_date: lastFundingDate,
+          }),
+        }
+      );
 
       await form.reset();
 
@@ -1021,7 +1023,6 @@
 
 <div class="bg-kick-black h-screen !overflow-hidden">
   <h1 class="text-white text-center text-3xl font-bold">Analyze</h1>
-
   <section>
     <div class="container text-white -mt-24">
       <form>
@@ -1521,7 +1522,7 @@
 
           <div class="form-group bg-kick-gold">
             <label for="workforce" class="bg-kick-gold text-xl font-semibold"
-              >Number of employees in the company</label
+              >Number of Investors associated with the company</label
             >
             <input
               type="text"

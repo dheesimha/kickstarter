@@ -32,12 +32,26 @@ export const PUT = async (event) => {
 
     const pattern = /Date/
     let datesArray = [];
+    let averageDuration;
+
 
     Object.keys(result).forEach(key => {
         if (pattern.test(key)) {
             datesArray.push(result[key])
         }
     })
+
+
+    if (datesArray.length > 1) {
+        const firstDate = new Date(datesArray[0])
+        const lastDate = new Date(datesArray[datesArray.length - 1])
+
+        averageDuration = (lastDate - firstDate) / (1000 * 60 * 60 * 24); // Difference in days
+    }
+
+    else {
+        averageDuration = 0;
+    }
 
     let item = {
         user: result.userId,
@@ -54,8 +68,8 @@ export const PUT = async (event) => {
         workforce: result.workforce,
         firstFundingAge: result.firstFundingAge,
         firstMilestoneAge: result.firstMilestoneAge,
-        milestoneCount: result.milestoneCount
-
+        milestoneCount: result.milestoneCount,
+        funding_duration_avg: averageDuration
     }
 
 

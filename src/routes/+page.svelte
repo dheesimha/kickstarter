@@ -1,21 +1,7 @@
 <script>
-  import { onMount } from "svelte";
   import auth from "../authService";
   import { user, auth0Client } from "../store";
   import { goto } from "$app/navigation";
-
-  onMount(async () => {
-    try {
-      let res = await fetch("/api/db", {
-        method: "GET",
-      });
-
-      let msg = await res.text();
-      console.log(msg);
-    } catch (error) {
-      console.error(error);
-    }
-  });
 
   async function login() {
     await auth.loginWithPopup($auth0Client);
