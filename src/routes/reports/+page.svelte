@@ -23,7 +23,7 @@
 
 {#if win != undefined}
   <div class="bg-kick-black min-h-screen h-fit">
-    <h1 class="text-white text-center text-3xl font-bold">Reports</h1>
+    <h1 class="text-white text-center text-4xl font-bold">Reports</h1>
     <br />
     <br />
 

@@ -87,12 +87,12 @@
           >
             Login
           </button>
-        {:else}
+        {:else if $page.url.pathname != undefined}
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#f7eac1] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
               'dashboard'
             )
-              ? 'text-[#fff3d3]'
+              ? 'text-[#f7eac1]'
               : 'text-kick-gold'}"
             on:click={() => {
               goto("/dashboard");
@@ -101,10 +101,10 @@
             Dashboard
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#f7eac1] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
               'analyze'
             )
-              ? 'text-[#fff3d3]'
+              ? 'text-[#f7eac1]'
               : 'text-kick-gold'}"
             on:click={() => {
               goto("/analyze");
@@ -113,10 +113,10 @@
             Analyze
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#f7eac1] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
               'edit'
             )
-              ? 'text-[#fff3d3]'
+              ? 'text-[#f7eac1]'
               : 'text-kick-gold'}"
             on:click={() => {
               goto("/edit");
@@ -125,10 +125,10 @@
             Edit
           </h2>
           <h2
-            class="text-kick-gold text-lg cursor-pointer hover:text-[#fff3d3] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
+            class="text-kick-gold text-lg cursor-pointer hover:text-[#f7eac1] hover:duration-[800ms] duration-[800ms] {$page.url.pathname.includes(
               'reports'
             )
-              ? 'text-[#fff3d3]'
+              ? 'text-[#f7eac1]'
               : 'text-kick-gold'}"
             on:click={() => {
               goto("/reports");

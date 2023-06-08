@@ -962,6 +962,23 @@
         }
       );
 
+      await fetch(
+        `/api/perspective?companyName=${result.companyName}&email=${result.email}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            advert: result.advert,
+            age_fund: parseInt(result.firstFundingAge),
+            age_mile: parseInt(result.firstMilestoneAge),
+            relation_score: parseInt(result.crm),
+            signi_event: parseInt(result.milestoneCount),
+            second_round: result.secondRound,
+            num_employ: parseInt(result.workforce),
+            top500: result.topCompany,
+          }),
+        }
+      );
+
       await form.reset();
 
       await goto(`/reports/${result.companyName}`);
@@ -1021,8 +1038,8 @@
   }
 </script>
 
-<div class="bg-kick-black h-screen !overflow-hidden">
-  <h1 class="text-white text-center text-3xl font-bold">Analyze</h1>
+<div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
+  <h1 class="text-white text-center text-4xl font-bold">Analyze</h1>
   <section>
     <div class="container text-white -mt-24">
       <form>
@@ -1469,6 +1486,7 @@
               class="bg-kick-gold text-xl font-semibold"
               >Age of the company when it received it's first funding</label
             >
+            <p>Enter -1 if the company has not been funded so far</p>
             <input
               type="text"
               id="firstFundingAge"
@@ -1498,6 +1516,7 @@
               class="bg-kick-gold text-xl font-semibold"
               >Age of the company when it reached it's first milestone</label
             >
+            <p>Enter -1 if the company has not reached any milestone(s)</p>
             <input
               type="text"
               id="firstMilestoneAge"
@@ -1634,6 +1653,7 @@
     /* background-color: #cbb26a; */
   }
   .container {
+    margin-top: 1px;
     max-width: 400px;
     width: 90%;
     padding: 20px;

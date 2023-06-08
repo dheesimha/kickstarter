@@ -10,7 +10,7 @@
 </script>
 
 <div class="bg-kick-black h-screen">
-  <h1 class="text-white text-center text-3xl font-bold">Dashboard</h1>
+  <h1 class="text-white text-center text-4xl font-bold">Dashboard</h1>
   <div class="grid-container mt-8 text-white text-center mb-4">
     <div
       class="grid-item"

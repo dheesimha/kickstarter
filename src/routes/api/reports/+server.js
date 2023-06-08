@@ -13,13 +13,22 @@ export const POST = async (event) => {
     body.category = body.category.join('|')
     body.country_code = countries.getAlpha3Code(body.country_code, "en")
 
+    let dev = 1;
+
+    let url;
+    if (dev) {
+        url = "https://kickstarter-fin-model.onrender.com"
+    }
+    else {
+        url = "https://kickstarter-fin-model-production.up.railway.app"
+    }
 
     console.log(body)
 
     try {
         console.log('Hitting Remote Endpoint')
 
-        let response = await fetch("https://kickstarter-fin-model.onrender.com/predict", {
+        let response = await fetch(`${url}/predict`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -32,7 +41,7 @@ export const POST = async (event) => {
         console.log(result)
 
         console.log('Getting avg result')
-        let response2 = await fetch("https://kickstarter-fin-model.onrender.com/dataAvg", {
+        let response2 = await fetch(`${url}/dataAvg`, {
             method: "POST",
             body: JSON.stringify({
                 country_code: body.country_code
@@ -49,23 +58,23 @@ export const POST = async (event) => {
         if (result.success == 1) {
             finalResponse = await Company.findOneAndUpdate({ companyName: companyName, user: person._id },
                 {
-                    success: 1,
+                    financialSuccess: 1,
                     funding_total_average: res2.funding_total_average,
                     country_funding_duration_avg: res2.funding_duration_avg,
                     funding_rounds_avg: res2.funding_rounds_avg,
                     reportGenerated: true
                 })
-            console.log('Entered success')
+            console.log('Entered financial success')
         }
         else {
             finalResponse = await Company.findOneAndUpdate({ companyName: companyName, user: person._id }, {
-                success: 0,
+                financialSuccess: 0,
                 funding_total_average: res2.funding_total_average,
                 country_funding_duration_avg: res2.funding_duration_avg,
                 funding_rounds_avg: res2.funding_rounds_avg,
                 reportGenerated: true
             })
-            console.log('Entered failure')
+            console.log('Entered financial failure')
 
         }
 

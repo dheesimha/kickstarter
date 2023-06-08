@@ -1049,6 +1049,23 @@
         }
       );
 
+      await fetch(
+        `/api/perspective?companyName=${result.companyName}&email=${result.email}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            advert: result.advert,
+            age_fund: parseInt(result.firstFundingAge),
+            age_mile: parseInt(result.firstMilestoneAge),
+            relation_score: parseInt(result.crm),
+            signi_event: parseInt(result.milestoneCount),
+            second_round: result.secondRound,
+            num_employ: parseInt(result.workforce),
+            top500: result.topCompany,
+          }),
+        }
+      );
+
       // await changeStep("prev");
       alert("Successfully edited the details of " + companyName);
 
@@ -1099,8 +1116,8 @@
   }
 </script>
 
-<div class="bg-kick-black h-screen !overflow-hidden">
-  <h1 class="text-white text-center text-3xl font-bold">
+<div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
+  <h1 class="text-white text-center text-4xl font-bold">
     Edit {companyName}'s details
   </h1>
   <section>
@@ -1470,7 +1487,9 @@
 
         <div class="step step-2 bg-kick-gold">
           <div class="form-group bg-kick-gold">
-            <label for="fundingRounds" class="bg-kick-gold"
+            <label
+              for="fundingRounds"
+              class="bg-kick-gold text-xl font-semibold"
               >Number of funding rounds completed
             </label>
             <input
@@ -1484,7 +1503,7 @@
           </div>
 
           <div class="form-group bg-kick-gold">
-            <label for="fundsRaised" class="bg-kick-gold"
+            <label for="fundsRaised" class="bg-kick-gold text-xl font-semibold"
               >Total Funding Amount Raised in USD</label
             >
             <input
@@ -1496,7 +1515,7 @@
           </div>
 
           <div class="input-group date form-group bg-kick-gold" id="datepicker">
-            <label for="fundsRaised" class="bg-kick-gold"
+            <label for="fundsRaised" class="bg-kick-gold text-xl font-semibold"
               >Enter the dates from the first - latest funding rounds</label
             >
           </div>
@@ -1542,12 +1561,13 @@
             </div>
           </div>
 
-          <div class="form-group bg-kick-gold">
+          <div class="form-group bg-kick-gold mt-[35px]">
             <label
               for="firstFundingAge"
               class="bg-kick-gold text-xl font-semibold"
               >Age of the company when it received it's first funding</label
             >
+            <p>Enter -1 if the company has not been funded so far</p>
             <input
               type="text"
               id="firstFundingAge"
@@ -1577,6 +1597,7 @@
               class="bg-kick-gold text-xl font-semibold"
               >Age of the company when it reached it's first milestone</label
             >
+            <p>Enter -1 if the company has not reached any milestone(s)</p>
             <input
               type="text"
               id="firstMilestoneAge"
@@ -1720,6 +1741,7 @@
     border-radius: 8px;
     background-color: #cbb26a;
     transition: 2s;
+    margin-top: 1px;
   }
 
   .container:hover {
