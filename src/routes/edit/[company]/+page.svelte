@@ -1117,7 +1117,7 @@
 </script>
 
 <div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
-  <h1 class="text-white text-center text-4xl font-bold">
+  <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">
     Edit {companyName}'s details
   </h1>
   <section>
@@ -1541,7 +1541,7 @@
                 type="radio"
                 name="advert"
                 id="advertYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>
@@ -1555,7 +1555,7 @@
                 type="radio"
                 name="advert"
                 id="advertNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1657,7 +1657,7 @@
                 type="radio"
                 name="topCompany"
                 id="topCompanyYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>
@@ -1671,7 +1671,7 @@
                 type="radio"
                 name="topCompany"
                 id="topCompanyNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1694,7 +1694,7 @@
                 type="radio"
                 name="secondRound"
                 id="secondRoundYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>
@@ -1708,7 +1708,7 @@
                 type="radio"
                 name="secondRound"
                 id="secondRoundNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1801,5 +1801,15 @@
   button.next-btn:hover {
     border: 2px solid white;
     transition: 1s;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .container {
+      margin-top: -55px;
+    }
+
+    .container:hover {
+      box-shadow: none;
+    }
   }
 </style>

@@ -23,16 +23,18 @@
 
 {#if win != undefined}
   <div class="bg-kick-black min-h-screen h-fit">
-    <h1 class="text-white text-center text-4xl font-bold">Edit</h1>
+    <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">Edit</h1>
     <br />
     <br />
 
     {#if companies.length > 0}
-      {#each companies as company}
-        <Tile {company} />
-        <br />
-        <br />
-      {/each}
+      <div class="flex sm:block flex-col items-center justify-center">
+        {#each companies as company}
+          <Tile {company} />
+          <br />
+          <br />
+        {/each}
+      </div>
     {:else}
       <h2 class="text-white text-center text-xl">No companies analyzed.</h2>
     {/if}

@@ -13,4 +13,9 @@
   export let data;
 </script>
 
-<Doughnut {data} options={{ responsive: true }} />
+<Doughnut
+  {data}
+  options={{
+    responsive: true,
+  }}
+/>

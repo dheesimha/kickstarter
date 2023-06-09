@@ -23,16 +23,20 @@
 
 {#if win != undefined}
   <div class="bg-kick-black min-h-screen h-fit">
-    <h1 class="text-white text-center text-4xl font-bold">Reports</h1>
+    <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">
+      Reports
+    </h1>
     <br />
     <br />
 
     {#if companies.length > 0}
-      {#each companies as company}
-        <ReportTile {company} />
-        <br />
-        <br />
-      {/each}
+      <div class="flex flex-col items-center justify-center">
+        {#each companies as company}
+          <ReportTile {company} />
+          <br />
+          <br />
+        {/each}
+      </div>
     {:else}
       <h2 class="text-white text-center text-xl">No reports generated.</h2>
     {/if}

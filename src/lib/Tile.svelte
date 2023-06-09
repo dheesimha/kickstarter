@@ -24,7 +24,7 @@
 
 <div class="border-2 border-kick-gold rounded-2xl mx-56 px-8 py-4 container1">
   <h2 class="text-white text-center text-xl">{company.companyName}</h2>
-  <div class="icons inline float-right -mt-7">
+  <div class="icons sm:inline sm:float-right sm:-mt-7 flex flex-row mt-2">
     <svg
       on:click={() => {
         goto(`/edit/${company.companyName}`);

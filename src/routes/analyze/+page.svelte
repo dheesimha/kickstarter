@@ -1039,9 +1039,9 @@
 </script>
 
 <div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
-  <h1 class="text-white text-center text-4xl font-bold">Analyze</h1>
+  <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">Analyze</h1>
   <section>
-    <div class="container text-white -mt-24">
+    <div class="container text-white">
       <form>
         <div class="step step-1 active bg-kick-gold">
           <div class="form-group bg-kick-gold">
@@ -1460,7 +1460,7 @@
                 type="radio"
                 name="advert"
                 id="advertYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>
@@ -1474,7 +1474,7 @@
                 type="radio"
                 name="advert"
                 id="advertNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1576,7 +1576,7 @@
                 type="radio"
                 name="topCompany"
                 id="topCompanyYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>
@@ -1590,7 +1590,7 @@
                 type="radio"
                 name="topCompany"
                 id="topCompanyNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1613,7 +1613,7 @@
                 type="radio"
                 name="secondRound"
                 id="secondRoundYes"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-366"
                 value="Yes"
               />
             </div>
@@ -1627,7 +1627,7 @@
                 type="radio"
                 name="secondRound"
                 id="secondRoundNo"
-                class="inline -ml-36"
+                class="inline -ml-32 sm:-ml-36"
                 value="No"
               />
             </div>
@@ -1653,7 +1653,7 @@
     /* background-color: #cbb26a; */
   }
   .container {
-    margin-top: 1px;
+    margin-top: -15px;
     max-width: 400px;
     width: 90%;
     padding: 20px;
@@ -1720,5 +1720,15 @@
   button.next-btn:hover {
     border: 2px solid white;
     transition: 1s;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .container {
+      margin-top: -55px;
+    }
+
+    .container:hover {
+      box-shadow: none;
+    }
   }
 </style>
