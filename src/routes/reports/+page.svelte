@@ -21,6 +21,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Reports</title>
+</svelte:head>
+
 {#if win != undefined}
   <div class="bg-kick-black min-h-screen h-fit">
     <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">

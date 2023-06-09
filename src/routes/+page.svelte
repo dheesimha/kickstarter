@@ -11,6 +11,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
+
 <div
   class="flex flex-col items-center sm:items-start sm:flex-row sm:content-center sm:justify-center h-screen bg-kick-black"
 >

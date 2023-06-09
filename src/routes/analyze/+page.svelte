@@ -1038,6 +1038,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Analyze</title>
+</svelte:head>
+
 <div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
   <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">Analyze</h1>
   <section>
@@ -1613,7 +1617,7 @@
                 type="radio"
                 name="secondRound"
                 id="secondRoundYes"
-                class="inline -ml-32 sm:-ml-366"
+                class="inline -ml-32 sm:-ml-36"
                 value="Yes"
               />
             </div>

@@ -9,6 +9,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Dashboard</title>
+</svelte:head>
+
 <div class="bg-kick-black min-h-screen">
   <h1 class="text-white text-center sm:text-4xl text-2xl font-bold">
     Dashboard

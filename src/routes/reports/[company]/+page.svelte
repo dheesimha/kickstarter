@@ -204,6 +204,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Report - {companyName}</title>
+</svelte:head>
+
 <div class="bg-kick-black min-h-screen h-fit">
   <h1 class="text-white text-center sm:text-4xl text-2xl font-bold">
     Report of {companyName}

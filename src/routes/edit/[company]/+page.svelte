@@ -1116,6 +1116,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Edit - {companyName}</title>
+</svelte:head>
+
 <div class="bg-kick-black min-h-screen h-fit !overflow-hidden">
   <h1 class="text-white text-center text-2xl sm:text-4xl font-bold">
     Edit {companyName}'s details

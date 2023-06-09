@@ -11,9 +11,10 @@ export const POST = async (event) => {
     let finalResponse
 
     body.category = body.category.join('|')
+    console.log(countries)
     body.country_code = countries.getAlpha3Code(body.country_code, "en")
 
-    let dev = 1;
+    let dev = 0;
 
     let url;
     if (dev) {
