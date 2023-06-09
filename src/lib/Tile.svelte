@@ -16,7 +16,7 @@
       });
 
       if (res.status == 200) {
-        win.location.reload();
+        goto("/edit");
       }
     }
   }
