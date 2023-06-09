@@ -11,3 +11,4 @@ vite.config.ts.timestamp-*\
 pnpm-lock.yaml
 dist
 .vercel
+.netlify
