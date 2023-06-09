@@ -8,7 +8,7 @@ export const POST = async (event) => {
     let email = await event.url.searchParams.get('email')
     let finalResponse
 
-    let dev = 1
+    let dev = 0;
 
     let url;
 
