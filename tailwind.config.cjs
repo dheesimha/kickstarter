@@ -6,8 +6,11 @@ module.exports = {
       colors: {
         'kick-gold': '#cbb26a',
         'kick-black': '#1a1a1a'
+      },
+      fontFamily: {
+        Nunito: ['Nunito', 'sans-serif']
       }
     },
-  },
-  plugins: [],
+    plugins: [],
+  }
 }
