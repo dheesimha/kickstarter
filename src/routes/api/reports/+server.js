@@ -1,7 +1,7 @@
 import Company from "../../../lib/models/companyDetails"
 import User from "$lib/models/user"
 
-import { getAlpha3Code } from "i18n-iso-countries"
+import countries from "i18n-iso-countries"
 
 export const POST = async (event) => {
     let body = await event.request.json()
@@ -11,7 +11,7 @@ export const POST = async (event) => {
     let finalResponse
 
     body.category = body.category.join('|')
-    body.country_code = getAlpha3Code(body.country_code, "en")
+    body.country_code = countries.getAlpha3Code(body.country_code, "en")
 
     let dev = 0;
 
