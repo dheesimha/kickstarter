@@ -1,10 +1,7 @@
 import Company from "../../../lib/models/companyDetails"
 import User from "$lib/models/user"
 
-// import * as countries from "i18n-iso-countries"
-
-// countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
-
+import * as countries from "i18n-iso-countries"
 
 export const POST = async (event) => {
     let body = await event.request.json()
@@ -15,7 +12,7 @@ export const POST = async (event) => {
 
     body.category = body.category.join('|')
     console.log(countries)
-    // body.country_code = countries.getAlpha3Code(body.country_code, "en")
+    body.country_code = countries.getAlpha3Code(body.country_code, "en")
 
     let dev = 0;
 
